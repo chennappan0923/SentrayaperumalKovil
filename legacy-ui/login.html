@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentraya Perumal Temple - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0505 0%, #3d0c0c 30%, #8B0000 70%, #5c0000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Pattern */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23FFD700' fill-opacity='0.03'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z'/%3E%3C/g%3E%3C/svg%3E");
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 80px 80px; }
+        }
+
+        /* Floating Diyas */
+        .floating-diya {
+            position: absolute;
+            font-size: 30px;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        .floating-diya:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .floating-diya:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .floating-diya:nth-child(3) { bottom: 30%; left: 8%; animation-delay: 2s; }
+        .floating-diya:nth-child(4) { bottom: 15%; right: 10%; animation-delay: 0.5s; }
+        .floating-diya:nth-child(5) { top: 50%; left: 5%; animation-delay: 1.5s; }
+        .floating-diya:nth-child(6) { top: 40%; right: 5%; animation-delay: 2.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Decorative Circles */
+        .decoration-circle {
+            position: absolute;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .decoration-circle:nth-child(7) {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .decoration-circle:nth-child(8) {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        .login-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(255,248,220,0.98));
+            border-radius: 25px;
+            padding: 45px 40px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 215, 0, 0.3),
+                inset 0 0 60px rgba(255, 215, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #8B0000, #FFD700, #FF6600, #FFD700, #8B0000);
+        }
+
+        .login-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #8B0000, #FFD700, #FF6600, #FFD700, #8B0000);
+        }
+
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #FFD700;
+            opacity: 0.3;
+        }
+
+        .corner-decoration.top-left { top: 15px; left: 15px; border-right: none; border-bottom: none; border-top-left-radius: 15px; }
+        .corner-decoration.top-right { top: 15px; right: 15px; border-left: none; border-bottom: none; border-top-right-radius: 15px; }
+        .corner-decoration.bottom-left { bottom: 15px; left: 15px; border-right: none; border-top: none; border-bottom-left-radius: 15px; }
+        .corner-decoration.bottom-right { bottom: 15px; right: 15px; border-left: none; border-top: none; border-bottom-right-radius: 15px; }
+
+        .temple-icon {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .temple-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #8B0000, #5C0000);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 10px 30px rgba(139, 0, 0, 0.4),
+                0 0 0 5px rgba(255, 215, 0, 0.3),
+                0 0 0 10px rgba(139, 0, 0, 0.1);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4), 0 0 0 5px rgba(255, 215, 0, 0.3), 0 0 0 10px rgba(139, 0, 0, 0.1); }
+            50% { box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5), 0 0 0 8px rgba(255, 215, 0, 0.4), 0 0 0 15px rgba(139, 0, 0, 0.15); }
+        }
+
+        .temple-icon-wrapper i {
+            font-size: 45px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .tamil-text {
+            font-size: 20px;
+            color: #8B0000;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .login-header h1 {
+            color: #8B0000;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .login-header h2 {
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .login-header p {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: #8B0000;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8B0000;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #E8D4B8;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #FFFAF5, #FFF8F0);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #8B0000;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1);
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            font-size: 13px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #8B0000;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #8B0000, #5C0000);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(139, 0, 0, 0.4);
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #6B0000, #4a0000);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 0, 0, 0.5);
+        }
+
+        .login-btn i {
+            margin-left: 10px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #E8D4B8, transparent);
+        }
+
+        .divider span {
+            padding: 0 20px;
+            color: #8B0000;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .footer-text .diya {
+            color: #FFD700;
+            font-size: 18px;
+            animation: flicker 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+            50% { opacity: 0.7; text-shadow: 0 0 20px rgba(255, 215, 0, 1); }
+        }
+
+        .om-watermark {
+            position: absolute;
+            font-size: 250px;
+            color: rgba(139, 0, 0, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            font-weight: 700;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <!-- Floating Diyas -->
+    <div class="floating-diya">🪔</div>
+    <div class="floating-diya">🪔</div>
+    <div class="floating-diya">🪔</div>
+    <div class="floating-diya">🪔</div>
+    <div class="floating-diya">🪔</div>
+    <div class="floating-diya">🪔</div>
+    
+    <!-- Decorative Circles -->
+    <div class="decoration-circle"></div>
+    <div class="decoration-circle"></div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="om-watermark">ॐ</div>
+            
+            <div class="corner-decoration top-left"></div>
+            <div class="corner-decoration top-right"></div>
+            <div class="corner-decoration bottom-left"></div>
+            <div class="corner-decoration bottom-right"></div>
+            
+            <div class="temple-icon">
+                <div class="temple-icon-wrapper">
+                    <i class="fas fa-gopuram"></i>
+                </div>
+            </div>
+
+            <div class="login-header">
+                <p class="tamil-text">ஓம் நமோ நாராயணாய</p>
+                <h1>Sentraya Perumal Temple</h1>
+                <h2>Temple Management System</h2>
+                <p>திருக்கோயில் மேலாண்மை அமைப்பு</p>
+            </div>
+
+            <form action="dashboard.html" method="get">
+                <div class="form-group">
+                    <label>Username / பயனர் பெயர்</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Enter your username" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password / கடவுச்சொல்</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login / உள்நுழைய <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>🙏 ஸ்ரீ பெருமாள் 🙏</span>
+            </div>
+
+            <div class="footer-text">
+                <span class="diya">🪔</span>
+                May Lord Perumal Bless You
+                <span class="diya">🪔</span>
+                <br>
+                <small>பெருமாள் அருள் உங்களுக்கு கிடைக்கட்டும்</small>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

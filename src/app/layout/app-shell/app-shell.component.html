@@ -1,0 +1,67 @@
+<div class="shell-bg"></div>
+
+<header class="shell-header">
+  <div class="shell-brand">
+    <button pButton class="mobile-toggle p-button-text" icon="pi pi-bars" (click)="toggleSidebar()"></button>
+    <div class="brand-icon">
+      <i class="pi pi-building-columns"></i>
+    </div>
+    <div class="brand-copy">
+      <h1>{{ lang.t('app.name') }}</h1>
+      <p>{{ lang.t('app.subtitle') }}</p>
+    </div>
+  </div>
+  <div class="shell-meta">
+    <div class="meta-chip">
+      <i class="pi pi-calendar"></i>
+      <span>{{ currentDate }}</span>
+    </div>
+    <div class="meta-chip language-chip">
+      <i class="pi pi-language"></i>
+      <label for="languageSelect">{{ lang.t('app.language') }}</label>
+      <select id="languageSelect" [(ngModel)]="selectedLanguage" class="language-select">
+        @for (option of lang.options; track option.value) {
+          <option [value]="option.value">{{ lang.t(option.labelKey) }}</option>
+        }
+      </select>
+    </div>
+    <div class="meta-user">
+      <div class="user-avatar">A</div>
+      <div>
+        <strong>{{ lang.t('app.adminUser') }}</strong>
+        <p>{{ lang.t('app.administrator') }}</p>
+      </div>
+    </div>
+    <button pButton class="btn btn-primary shell-logout" icon="pi pi-sign-out" [label]="lang.t('app.logout')" (click)="logout()"></button>
+  </div>
+</header>
+
+<div class="shell-layout">
+  <aside class="shell-sidebar" [class.open]="sidebarOpen">
+    <div class="sidebar-top">
+      <h2>{{ lang.t(pageTitleKey) }}</h2>
+      <p>{{ lang.t('app.ledger') }}</p>
+    </div>
+    <nav>
+      @for (section of navSections; track section.titleKey) {
+        <div class="nav-section">
+          <div class="nav-section-title">{{ lang.t(section.titleKey) }}</div>
+          @for (item of section.items; track item.route) {
+            <a class="nav-item" [routerLink]="item.route" routerLinkActive="active">
+              <i [class]="item.icon"></i>
+              <span>{{ lang.t(item.labelKey) }}</span>
+            </a>
+          }
+        </div>
+      }
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+@if (sidebarOpen) {
+  <button class="sidebar-backdrop" (click)="closeSidebar()" aria-label="Close sidebar"></button>
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Report - Perumal Saamy Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kolam-bg"></div>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-section"><div class="logo-icon"><i class="fas fa-gopuram"></i></div><div class="logo-text"><h1>Perumal Saamy Temple</h1><p>ஓம் நமோ நாராயணாய</p></div></div>
+            <h2 class="header-title">Tax Report</h2>
+        </div>
+        <div class="header-right">
+            <div class="header-date"><i class="fas fa-calendar-alt"></i><span id="currentDate"></span></div>
+            <div class="user-menu"><div class="user-avatar">A</div><div class="user-info"><div class="name">Admin User</div><div class="role">Administrator</div></div></div>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <nav>
+            <div class="nav-section"><div class="nav-section-title">Main</div><a class="nav-item" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+            <div class="nav-section">
+                <div class="nav-section-title">Masters</div>
+                <a class="nav-item" href="village-master.html"><i class="fas fa-map-marker-alt"></i> Village Master</a>
+                <a class="nav-item" href="devotees.html"><i class="fas fa-users"></i> Devotees</a>
+                <a class="nav-item" href="tax-master.html"><i class="fas fa-percentage"></i> Tax Master</a>
+                <a class="nav-item" href="donation-master.html"><i class="fas fa-hand-holding-heart"></i> Donation Master</a>
+                <a class="nav-item" href="pettycash-master.html"><i class="fas fa-coins"></i> Petty Cash Master</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Transactions</div>
+                <a class="nav-item" href="tax-entry.html"><i class="fas fa-file-invoice-dollar"></i> Tax Entry</a>
+                <a class="nav-item" href="donation-screen.html"><i class="fas fa-donate"></i> Donation Screen</a>
+                <a class="nav-item" href="interest.html"><i class="fas fa-chart-line"></i> Interest</a>
+                <a class="nav-item" href="payment.html"><i class="fas fa-money-bill-wave"></i> Payment</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a class="nav-item active" href="tax-report.html"><i class="fas fa-file-alt"></i> Tax Paid & Unpaid Report</a>
+                <a class="nav-item" href="donation-report.html"><i class="fas fa-file-invoice"></i> Donation Report</a>
+                <a class="nav-item" href="payment-report.html"><i class="fas fa-receipt"></i> Payment Report</a>
+                <a class="nav-item" href="overall-report.html"><i class="fas fa-chart-pie"></i> Overall Transaction Report</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer"><div class="om-symbol">🙏</div><p>Temple Management System</p><p class="version">Version 1.0.0</p></div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title"><div class="page-title-icon"><i class="fas fa-file-alt"></i></div><div><h2>Tax Paid & Unpaid Report</h2><p>View tax payment status / வரி செலுத்திய நிலை</p></div></div>
+            <div class="btn-group" style="margin: 0;"><button class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button><button class="btn btn-danger"><i class="fas fa-file-pdf"></i> Export PDF</button></div>
+        </div>
+        <div class="summary-cards">
+            <div class="summary-card success"><h4>₹5,42,800</h4><p>Overall Amount / மொத்த தொகை</p></div>
+            <div class="summary-card info"><h4>₹4,25,000</h4><p>Paid Amount / செலுத்திய தொகை</p></div>
+            <div class="summary-card danger"><h4>₹1,17,800</h4><p>Unpaid Amount / செலுத்தாத தொகை</p></div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-filter"></i> Filter Options / வடிகட்டி</h3></div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group"><label>Village Name / கிராம பெயர்</label><select class="form-control"><option>All Villages</option><option>Keeranur</option><option>Thiruvarankulam</option><option>Alangudi</option></select></div>
+                    <div class="form-group"><label>Tax Person Name / வரி செலுத்துபவர்</label><select class="form-control"><option>All Persons</option><option>Raman K</option><option>Selvam M</option><option>Kumar S</option></select></div>
+                    <div class="form-group"><label>Tax Type / வரி வகை</label><select class="form-control"><option>All Types</option><option>Full</option><option>Half</option></select></div>
+                    <div class="form-group"><label>Status / நிலை</label><select class="form-control"><option>All Status</option><option>Paid</option><option>Unpaid</option><option>Partial</option></select></div>
+                </div>
+                <div class="btn-group"><button class="btn btn-primary"><i class="fas fa-search"></i> Search</button><button class="btn btn-secondary"><i class="fas fa-redo"></i> Reset</button></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-list"></i> Tax Report / வரி அறிக்கை</h3></div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>S.No</th><th>Village Name</th><th>Tax Person Name</th><th>SPL Name</th><th>Father Name</th><th>Tax Type</th><th>Representative</th><th>Tax Amount</th><th>Overall Amt</th><th>Paid Amt</th><th>Unpaid Amt</th><th>Status</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>Keeranur</td><td>Raman K</td><td>-</td><td>Krishnan</td><td><span class="badge badge-primary">Full</span></td><td>Murugan S</td><td>₹500</td><td>₹5,000</td><td>₹5,000</td><td>₹0</td><td><span class="badge badge-success">Paid</span></td></tr>
+                            <tr><td>2</td><td>Thiruvarankulam</td><td>Selvam M</td><td>Selvam SPL</td><td>Murugan</td><td><span class="badge badge-warning">Half</span></td><td>Senthil K</td><td>₹250</td><td>₹2,500</td><td>₹1,500</td><td>₹1,000</td><td><span class="badge badge-warning">Partial</span></td></tr>
+                            <tr><td>3</td><td>Alangudi</td><td>Kumar S</td><td>-</td><td>Shanmugam</td><td><span class="badge badge-primary">Full</span></td><td>Kumar R</td><td>₹500</td><td>₹5,000</td><td>₹0</td><td>₹5,000</td><td><span class="badge badge-danger">Unpaid</span></td></tr>
+                            <tr><td>4</td><td>Aranthangi</td><td>Lakshmi P</td><td>Lakshmi SPL</td><td>Pandian</td><td><span class="badge badge-primary">Full</span></td><td>Ravi M</td><td>₹500</td><td>₹5,000</td><td>₹5,000</td><td>₹0</td><td><span class="badge badge-success">Paid</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="diya-decoration">🪔</div>
+    <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });</script>
+</body>
+</html>

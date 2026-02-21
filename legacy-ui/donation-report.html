@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Report - Perumal Saamy Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kolam-bg"></div>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-section"><div class="logo-icon"><i class="fas fa-gopuram"></i></div><div class="logo-text"><h1>Perumal Saamy Temple</h1><p>ஓம் நமோ நாராயணாய</p></div></div>
+            <h2 class="header-title">Donation Report</h2>
+        </div>
+        <div class="header-right">
+            <div class="header-date"><i class="fas fa-calendar-alt"></i><span id="currentDate"></span></div>
+            <div class="user-menu"><div class="user-avatar">A</div><div class="user-info"><div class="name">Admin User</div><div class="role">Administrator</div></div></div>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <nav>
+            <div class="nav-section"><div class="nav-section-title">Main</div><a class="nav-item" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+            <div class="nav-section">
+                <div class="nav-section-title">Masters</div>
+                <a class="nav-item" href="village-master.html"><i class="fas fa-map-marker-alt"></i> Village Master</a>
+                <a class="nav-item" href="devotees.html"><i class="fas fa-users"></i> Devotees</a>
+                <a class="nav-item" href="tax-master.html"><i class="fas fa-percentage"></i> Tax Master</a>
+                <a class="nav-item" href="donation-master.html"><i class="fas fa-hand-holding-heart"></i> Donation Master</a>
+                <a class="nav-item" href="pettycash-master.html"><i class="fas fa-coins"></i> Petty Cash Master</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Transactions</div>
+                <a class="nav-item" href="tax-entry.html"><i class="fas fa-file-invoice-dollar"></i> Tax Entry</a>
+                <a class="nav-item" href="donation-screen.html"><i class="fas fa-donate"></i> Donation Screen</a>
+                <a class="nav-item" href="interest.html"><i class="fas fa-chart-line"></i> Interest</a>
+                <a class="nav-item" href="payment.html"><i class="fas fa-money-bill-wave"></i> Payment</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a class="nav-item" href="tax-report.html"><i class="fas fa-file-alt"></i> Tax Paid & Unpaid Report</a>
+                <a class="nav-item active" href="donation-report.html"><i class="fas fa-file-invoice"></i> Donation Report</a>
+                <a class="nav-item" href="payment-report.html"><i class="fas fa-receipt"></i> Payment Report</a>
+                <a class="nav-item" href="overall-report.html"><i class="fas fa-chart-pie"></i> Overall Transaction Report</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer"><div class="om-symbol">🙏</div><p>Temple Management System</p><p class="version">Version 1.0.0</p></div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title"><div class="page-title-icon"><i class="fas fa-file-invoice"></i></div><div><h2>Donation Report</h2><p>View donation records / நன்கொடை அறிக்கை</p></div></div>
+            <div class="btn-group" style="margin: 0;"><button class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button><button class="btn btn-danger"><i class="fas fa-file-pdf"></i> Export PDF</button></div>
+        </div>
+        <div class="summary-cards">
+            <div class="summary-card success"><h4>₹2,15,000</h4><p>Total Donation Amount / மொத்த நன்கொடை</p></div>
+            <div class="summary-card info"><h4>156</h4><p>Total Donors / மொத்த நன்கொடையாளர்கள்</p></div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-filter"></i> Filter Options / வடிகட்டி</h3></div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group"><label>Village Name / கிராம பெயர்</label><select class="form-control"><option>All Villages</option><option>Keeranur</option><option>Thiruvarankulam</option><option>Alangudi</option></select></div>
+                    <div class="form-group"><label>Donation Type / நன்கொடை வகை</label><select class="form-control"><option>All Types</option><option>Temple Renovation</option><option>Annadhanam</option><option>Festival Fund</option><option>Deepam Fund</option></select></div>
+                    <div class="form-group"><label>From Date / தொடக்க தேதி</label><input type="date" class="form-control"></div>
+                    <div class="form-group"><label>To Date / முடிவு தேதி</label><input type="date" class="form-control"></div>
+                </div>
+                <div class="btn-group"><button class="btn btn-primary"><i class="fas fa-search"></i> Search</button><button class="btn btn-secondary"><i class="fas fa-redo"></i> Reset</button></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-list"></i> Donation Report / நன்கொடை அறிக்கை</h3></div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>S.No</th><th>Date</th><th>Village Name</th><th>Donate Name</th><th>Current Location</th><th>SPL Indication</th><th>Donation Name</th><th>Donation Amount</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>17-12-2024</td><td>Keeranur</td><td>Kumar S</td><td>Chennai</td><td>-</td><td>Temple Renovation</td><td class="amount-positive">₹5,000</td></tr>
+                            <tr><td>2</td><td>16-12-2024</td><td>Thiruvarankulam</td><td>Lakshmi R</td><td>Pudukottai</td><td>Lakshmi SPL</td><td>Annadhanam</td><td class="amount-positive">₹2,000</td></tr>
+                            <tr><td>3</td><td>15-12-2024</td><td>Alangudi</td><td>Murugan K</td><td>Trichy</td><td>-</td><td>Festival Fund</td><td class="amount-positive">₹10,000</td></tr>
+                            <tr><td>4</td><td>14-12-2024</td><td>Aranthangi</td><td>Selvam M</td><td>Madurai</td><td>Selvam SPL</td><td>Deepam Fund</td><td class="amount-positive">₹1,500</td></tr>
+                            <tr><td>5</td><td>13-12-2024</td><td>Keeranur</td><td>Raman K</td><td>Bangalore</td><td>-</td><td>Temple Renovation</td><td class="amount-positive">₹25,000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="diya-decoration">🪔</div>
+    <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });</script>
+</body>
+</html>

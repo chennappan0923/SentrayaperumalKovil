@@ -1,0 +1,93 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-users"></i></div>
+    <div><h2>Devotees</h2><p>Manage devotee information</p></div>
+  </div>
+  <button pButton class="btn btn-primary" icon="pi pi-plus" label="Add New Devotee" (click)="showForm = !showForm"></button>
+</div>
+
+@if (showForm) {
+  <div class="card">
+    <div class="card-header"><h3><i class="pi pi-user-edit"></i> Devotee Details</h3></div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Village Name <span class="required">*</span></label>
+            <p-select [appendTo]="'body'" [filter]="true" [options]="villages" optionLabel="name" optionValue="name" formControlName="villageName" class="form-control"></p-select>
+            @if (form.controls.villageName.invalid && form.controls.villageName.touched) {
+              <div class="field-error">Village is required.</div>
+            }
+          </div>
+          <div class="form-group">
+            <label>Taxperson Name <span class="required">*</span></label>
+            <input pInputText class="form-control" formControlName="taxpersonName">
+            @if (form.controls.taxpersonName.invalid && form.controls.taxpersonName.touched) {
+              <div class="field-error">Taxperson name is required.</div>
+            }
+          </div>
+          <div class="form-group"><label>Father Name</label><input pInputText class="form-control" formControlName="fatherName"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Tax Type</label><p-select [appendTo]="'body'" [filter]="true" [options]="taxTypeOptions" formControlName="taxType" class="form-control"></p-select></div>
+          <div class="form-group"><label>Status</label><p-select [appendTo]="'body'" [filter]="true" [options]="statusOptions" formControlName="status" class="form-control"></p-select></div>
+          <div class="form-group"><label>SPL Name</label><input pInputText class="form-control" formControlName="splName"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Current Location</label><input pInputText class="form-control" formControlName="currentLocation"></div>
+        </div>
+        <div class="btn-group">
+          <button pButton class="btn btn-primary" type="submit" icon="pi pi-save" label="Save" [loading]="isSaving" [disabled]="isSaving"></button>
+          <button pButton class="btn btn-secondary" type="button" icon="pi pi-times" label="Cancel" (click)="showForm = false"></button>
+        </div>
+        @if (formMessage) {
+          <div class="form-notice success">{{ formMessage }}</div>
+        }
+        @if (formError) {
+          <div class="form-notice error">{{ formError }}</div>
+        }
+      </form>
+    </div>
+  </div>
+}
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Devotees List</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p-table [value]="devotees" styleClass="data-table" [tableStyle]="{'min-width':'70rem'}">
+      <ng-template pTemplate="header">
+        <tr><th>S.No</th><th>Village</th><th>Taxperson</th><th>Father</th><th>Tax Type</th><th>SPL</th><th>Location</th><th>Status</th><th>Status Action</th></tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ item.villageName }}</td>
+          <td>{{ item.taxpersonName }}</td>
+          <td>{{ item.fatherName }}</td>
+          <td>{{ item.taxType }}</td>
+          <td>{{ item.splName }}</td>
+          <td>{{ item.currentLocation }}</td>
+          <td><p-tag [value]="item.status" [severity]="item.status === 'Active' ? 'success' : 'danger'"></p-tag></td>
+          <td>
+            <button
+              pButton
+              class="p-button-sm"
+              [class.p-button-danger]="item.status === 'Active'"
+              [class.p-button-success]="item.status === 'Inactive'"
+              [label]="item.status === 'Active' ? 'Set Inactive' : 'Set Active'"
+              (click)="toggleStatus(item)">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+

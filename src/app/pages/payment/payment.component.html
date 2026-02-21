@@ -1,0 +1,69 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-money-bill"></i></div>
+    <div><h2>Payment</h2><p>Record outgoing payments</p></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header"><h3><i class="pi pi-file-edit"></i> Payment Entry</h3></div>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="form-row">
+        <div class="form-group"><label>Payee Name <span class="required">*</span></label><input pInputText class="form-control" formControlName="payeeName"></div>
+        <div class="form-group">
+          <label>Category <span class="required">*</span></label>
+          <p-select [appendTo]="'body'" [filter]="true" [options]="categories" optionLabel="issueType" optionValue="issueType" formControlName="category" class="form-control"></p-select>
+          @if (form.controls.category.invalid && form.controls.category.touched) {
+            <div class="field-error">Category is required.</div>
+          }
+        </div>
+        <div class="form-group">
+          <label>Amount <span class="required">*</span></label>
+          <p-inputnumber formControlName="amount" mode="currency" currency="INR" locale="en-IN" class="form-control"></p-inputnumber>
+          @if (form.controls.amount.invalid && form.controls.amount.touched) {
+            <div class="field-error">Amount must be greater than 0.</div>
+          }
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Payment Date <span class="required">*</span></label><input pInputText type="date" class="form-control" formControlName="paymentDate"></div>
+        <div class="form-group"><label>Notes</label><input pInputText class="form-control" formControlName="notes"></div>
+      </div>
+      <div class="btn-group">
+        <button pButton class="btn btn-primary" label="Save" icon="pi pi-save" [loading]="isSaving" [disabled]="isSaving"></button>
+      </div>
+      @if (formMessage) {
+        <div class="form-notice success">{{ formMessage }}</div>
+      }
+      @if (formError) {
+        <div class="form-notice error">{{ formError }}</div>
+      }
+    </form>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Payment Entries</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body table-wrap">
+    <p-table [value]="entries" styleClass="data-table">
+      <ng-template pTemplate="header"><tr><th>Payee</th><th>Category</th><th>Amount</th><th>Date</th></tr></ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item.payeeName }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.amount | currency : 'INR' : 'symbol' : '1.0-0' }}</td>
+          <td>{{ item.paymentDate }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sentraya Perumal Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kolam-bg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-section">
+                <div class="logo-icon"><i class="fas fa-gopuram"></i></div>
+                <div class="logo-text">
+                    <h1>Sentraya Perumal Temple</h1>
+                    <p>ஓம் நமோ நாராயணாய</p>
+                </div>
+            </div>
+            <h2 class="header-title">Dashboard</h2>
+        </div>
+        <div class="header-right">
+            <div class="header-date"><i class="fas fa-calendar-alt"></i><span id="currentDate"></span></div>
+            <div class="user-menu">
+                <div class="user-avatar">A</div>
+                <div class="user-info"><div class="name">Admin User</div><div class="role">Administrator</div></div>
+            </div>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <div class="nav-section">
+                <div class="nav-section-title">Main</div>
+                <a class="nav-item active" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Masters</div>
+                <a class="nav-item" href="village-master.html"><i class="fas fa-map-marker-alt"></i> Village Master</a>
+                <a class="nav-item" href="devotees.html"><i class="fas fa-users"></i> Devotees</a>
+                <a class="nav-item" href="tax-master.html"><i class="fas fa-percentage"></i> Tax Master</a>
+                <a class="nav-item" href="donation-master.html"><i class="fas fa-hand-holding-heart"></i> Donation Master</a>
+                <a class="nav-item" href="pettycash-master.html"><i class="fas fa-coins"></i> Petty Cash Master</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Transactions</div>
+                <a class="nav-item" href="tax-entry.html"><i class="fas fa-file-invoice-dollar"></i> Tax Entry</a>
+                <a class="nav-item" href="donation-screen.html"><i class="fas fa-donate"></i> Donation Screen</a>
+                <a class="nav-item" href="interest.html"><i class="fas fa-chart-line"></i> Interest</a>
+                <a class="nav-item" href="payment.html"><i class="fas fa-money-bill-wave"></i> Payment</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a class="nav-item" href="tax-report.html"><i class="fas fa-file-alt"></i> Tax Paid & Unpaid Report</a>
+                <a class="nav-item" href="donation-report.html"><i class="fas fa-file-invoice"></i> Donation Report</a>
+                <a class="nav-item" href="payment-report.html"><i class="fas fa-receipt"></i> Payment Report</a>
+                <a class="nav-item" href="overall-report.html"><i class="fas fa-chart-pie"></i> Overall Transaction Report</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="om-symbol">🙏</div>
+            <p>Temple Management System</p>
+            <p class="version">Version 1.0.0</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title">
+                <div class="page-title-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Welcome to Temple Management System / வரவேற்கிறோம்</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon primary"><i class="fas fa-users"></i></div>
+                <div class="stat-info"><h3>1,245</h3><p>Total Devotees / பக்தர்கள்</p></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon success"><i class="fas fa-rupee-sign"></i></div>
+                <div class="stat-info"><h3>₹5,42,800</h3><p>Tax Collected / வரி</p></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon warning"><i class="fas fa-hand-holding-heart"></i></div>
+                <div class="stat-info"><h3>₹2,15,000</h3><p>Donations / நன்கொடை</p></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon info"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-info"><h3>₹1,25,000</h3><p>Interest / வட்டி</p></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon danger"><i class="fas fa-money-bill-wave"></i></div>
+                <div class="stat-info"><h3>₹45,200</h3><p>Expenses / செலவுகள்</p></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon primary"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="stat-info"><h3>28</h3><p>Villages / கிராமங்கள்</p></div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-bolt"></i> Quick Actions / விரைவு செயல்கள்</h3></div>
+            <div class="card-body">
+                <div class="quick-actions">
+                    <a class="action-card" href="tax-entry.html">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h4>New Tax Entry</h4>
+                        <p>புதிய வரி பதிவு</p>
+                    </a>
+                    <a class="action-card" href="donation-screen.html">
+                        <i class="fas fa-donate"></i>
+                        <h4>New Donation</h4>
+                        <p>புதிய நன்கொடை</p>
+                    </a>
+                    <a class="action-card" href="interest.html">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Interest Entry</h4>
+                        <p>வட்டி பதிவு</p>
+                    </a>
+                    <a class="action-card" href="payment.html">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h4>Payment Entry</h4>
+                        <p>செலுத்துதல் பதிவு</p>
+                    </a>
+                    <a class="action-card" href="devotees.html">
+                        <i class="fas fa-user-plus"></i>
+                        <h4>Add Devotee</h4>
+                        <p>பக்தர் சேர்க்க</p>
+                    </a>
+                    <a class="action-card" href="overall-report.html">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>View Reports</h4>
+                        <p>அறிக்கைகள்</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-history"></i> Recent Activity / சமீபத்திய நடவடிக்கை</h3></div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>17-12-2024</td>
+                                <td><span class="badge badge-success">Tax</span></td>
+                                <td>Raman K - Tax Payment</td>
+                                <td class="amount-positive">₹500</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>17-12-2024</td>
+                                <td><span class="badge badge-info">Donation</span></td>
+                                <td>Kumar S - Temple Renovation</td>
+                                <td class="amount-positive">₹5,000</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>16-12-2024</td>
+                                <td><span class="badge badge-danger">Expense</span></td>
+                                <td>Pooja Items Purchase</td>
+                                <td class="amount-negative">₹2,500</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>15-12-2024</td>
+                                <td><span class="badge badge-warning">Interest</span></td>
+                                <td>Interest from Selvam M</td>
+                                <td class="amount-positive">₹1,200</td>
+                                <td><span class="badge badge-warning">Pending</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="diya-decoration">🪔</div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-percentage"></i></div>
+    <div><h2>Tax Master</h2><p>Manage tax configurations</p></div>
+  </div>
+  <button pButton class="btn btn-primary" icon="pi pi-plus" label="Add New Tax" (click)="showForm = !showForm"></button>
+</div>
+
+@if (showForm) {
+  <div class="card">
+    <div class="card-header"><h3><i class="pi pi-file-edit"></i> Tax Details</h3></div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tax Amount <span class="required">*</span></label>
+            <p-inputnumber formControlName="taxAmount" mode="currency" currency="INR" locale="en-IN" class="form-control"></p-inputnumber>
+            @if (form.controls.taxAmount.invalid && form.controls.taxAmount.touched) {
+              <div class="field-error">Tax amount must be greater than 0.</div>
+            }
+          </div>
+          <div class="form-group">
+            <label>Type <span class="required">*</span></label>
+            <p-select [appendTo]="'body'" [filter]="true" [options]="typeOptions" formControlName="type" class="form-control"></p-select>
+            @if (form.controls.type.invalid && form.controls.type.touched) {
+              <div class="field-error">Type is required.</div>
+            }
+          </div>
+          <div class="form-group"><label>Interest Percentage</label><p-inputnumber formControlName="interestPercentage" suffix="%" class="form-control"></p-inputnumber></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Status</label><p-select [appendTo]="'body'" [filter]="true" [options]="statusOptions" formControlName="status" class="form-control"></p-select></div>
+        </div>
+        <div class="btn-group">
+          <button pButton class="btn btn-primary" type="submit" icon="pi pi-save" label="Save" [loading]="isSaving" [disabled]="isSaving"></button>
+          <button pButton class="btn btn-secondary" type="button" icon="pi pi-times" label="Cancel" (click)="showForm = false"></button>
+        </div>
+        @if (formMessage) {
+          <div class="form-notice success">{{ formMessage }}</div>
+        }
+        @if (formError) {
+          <div class="form-notice error">{{ formError }}</div>
+        }
+      </form>
+    </div>
+  </div>
+}
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Tax Configuration List</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p-table [value]="taxes" styleClass="data-table" [tableStyle]="{'min-width':'50rem'}">
+      <ng-template pTemplate="header">
+        <tr><th>S.No</th><th>Tax Amount</th><th>Type</th><th>Interest Percentage</th><th>Status</th><th>Status Action</th></tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ item.taxAmount | currency : 'INR' : 'symbol' : '1.0-0' }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.interestPercentage }}%</td>
+          <td><p-tag [value]="item.status" [severity]="item.status === 'Active' ? 'success' : 'danger'"></p-tag></td>
+          <td>
+            <button
+              pButton
+              class="p-button-sm"
+              [class.p-button-danger]="item.status === 'Active'"
+              [class.p-button-success]="item.status === 'Inactive'"
+              [label]="item.status === 'Active' ? 'Set Inactive' : 'Set Active'"
+              (click)="toggleStatus(item)">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+

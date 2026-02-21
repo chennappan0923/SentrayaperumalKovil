@@ -1,0 +1,32 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-chart-bar"></i></div>
+    <div>
+      <h2>Dashboard</h2>
+      <p>Welcome to Temple Management System</p>
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-stats">
+  @for (item of stats; track item.label) {
+    <div class="stat-card">
+      <div class="stat-icon" [class]="'stat-icon ' + item.className"><i class="pi" [class]="'pi ' + item.icon"></i></div>
+      <div class="stat-info"><h3>{{ item.value() }}</h3><p>{{ item.label }}</p></div>
+    </div>
+  }
+</div>
+
+<div class="card">
+  <div class="card-header"><h3><i class="pi pi-bolt"></i> Quick Actions</h3></div>
+  <div class="card-body">
+    <div class="quick-actions">
+      <a class="action-card" routerLink="/tax-entry"><i class="pi pi-file"></i><h4>New Tax Entry</h4><p>Record annual tax collection.</p></a>
+      <a class="action-card" routerLink="/donation-screen"><i class="pi pi-gift"></i><h4>New Donation</h4><p>Capture contribution details.</p></a>
+      <a class="action-card" routerLink="/interest"><i class="pi pi-chart-line"></i><h4>Interest Entry</h4><p>Post interest payment records.</p></a>
+      <a class="action-card" routerLink="/payment"><i class="pi pi-money-bill"></i><h4>Payment Entry</h4><p>Track outgoing temple expenses.</p></a>
+      <a class="action-card" routerLink="/devotees"><i class="pi pi-user-plus"></i><h4>Add Devotee</h4><p>Maintain devotee master list.</p></a>
+      <a class="action-card" routerLink="/overall-report"><i class="pi pi-chart-pie"></i><h4>View Reports</h4><p>Review consolidated finances.</p></a>
+    </div>
+  </div>
+</div>

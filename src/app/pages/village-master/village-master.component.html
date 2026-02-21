@@ -1,0 +1,70 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-map-marker"></i></div>
+    <div><h2>Village Master</h2><p>Manage village information</p></div>
+  </div>
+  <button pButton class="btn btn-primary" icon="pi pi-plus" label="Add New Village" (click)="showForm = !showForm"></button>
+</div>
+
+@if (showForm) {
+  <div class="card">
+    <div class="card-header"><h3><i class="pi pi-file-edit"></i> Village Details</h3></div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Village Name <span class="required">*</span></label>
+            <input pInputText class="form-control" formControlName="name">
+            @if (form.controls.name.invalid && form.controls.name.touched) {
+              <div class="field-error">Village name is required.</div>
+            }
+          </div>
+          <div class="form-group"><label>Post</label><input pInputText class="form-control" formControlName="post"></div>
+          <div class="form-group"><label>Taluk</label><input pInputText class="form-control" formControlName="taluk"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>District</label><input pInputText class="form-control" formControlName="district"></div>
+          <div class="form-group"><label>Representative</label><input pInputText class="form-control" formControlName="representative"></div>
+        </div>
+        <div class="btn-group">
+          <button pButton class="btn btn-primary" type="submit" icon="pi pi-save" label="Save" [loading]="isSaving" [disabled]="isSaving"></button>
+          <button pButton class="btn btn-secondary" type="button" icon="pi pi-times" label="Cancel" (click)="showForm = false"></button>
+        </div>
+        @if (formMessage) {
+          <div class="form-notice success">{{ formMessage }}</div>
+        }
+        @if (formError) {
+          <div class="form-notice error">{{ formError }}</div>
+        }
+      </form>
+    </div>
+  </div>
+}
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Village List</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body">
+    <p-table [value]="villages" styleClass="data-table" [tableStyle]="{'min-width':'60rem'}">
+      <ng-template pTemplate="header">
+        <tr><th>S.No</th><th>Village Name</th><th>Post</th><th>Taluk</th><th>District</th><th>Representative</th></tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.post }}</td>
+          <td>{{ item.taluk }}</td>
+          <td>{{ item.district }}</td>
+          <td>{{ item.representative }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

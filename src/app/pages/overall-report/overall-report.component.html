@@ -1,0 +1,41 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-chart-pie"></i></div>
+    <div><h2>Overall Transaction Report</h2><p>Live financial snapshot</p></div>
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="summary-card success"><h4>{{ totalTax | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Tax Collected</p></div>
+  <div class="summary-card info"><h4>{{ totalDonations | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Donations</p></div>
+  <div class="summary-card danger"><h4>{{ totalPayments | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Payments</p></div>
+  <div class="summary-card" [class.success]="net >= 0" [class.danger]="net < 0"><h4>{{ net | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Net Balance</p></div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Combined Transactions</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body table-wrap">
+    @if (transactions.length === 0) {
+      <div class="form-notice">No transactions available yet.</div>
+    } @else {
+      <p-table [value]="transactions" styleClass="data-table">
+        <ng-template pTemplate="header"><tr><th>Date</th><th>Type</th><th>Name</th><th>Amount</th></tr></ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.date }}</td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.name }}</td>
+            <td [class.amount-positive]="item.amount >= 0" [class.amount-negative]="item.amount < 0">{{ item.amount | currency : 'INR' : 'symbol' : '1.0-0' }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    }
+  </div>
+</div>

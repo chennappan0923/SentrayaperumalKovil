@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Master - Perumal Saamy Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="kolam-bg"></div>
+
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-section">
+                <div class="logo-icon"><i class="fas fa-gopuram"></i></div>
+                <div class="logo-text"><h1>Perumal Saamy Temple</h1><p>ஓம் நமோ நாராயணாய</p></div>
+            </div>
+            <h2 class="header-title">Village Master</h2>
+        </div>
+        <div class="header-right">
+            <div class="header-date"><i class="fas fa-calendar-alt"></i><span id="currentDate"></span></div>
+            <div class="user-menu"><div class="user-avatar">A</div><div class="user-info"><div class="name">Admin User</div><div class="role">Administrator</div></div></div>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <nav>
+            <div class="nav-section"><div class="nav-section-title">Main</div><a class="nav-item" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+            <div class="nav-section">
+                <div class="nav-section-title">Masters</div>
+                <a class="nav-item active" href="village-master.html"><i class="fas fa-map-marker-alt"></i> Village Master</a>
+                <a class="nav-item" href="devotees.html"><i class="fas fa-users"></i> Devotees</a>
+                <a class="nav-item" href="tax-master.html"><i class="fas fa-percentage"></i> Tax Master</a>
+                <a class="nav-item" href="donation-master.html"><i class="fas fa-hand-holding-heart"></i> Donation Master</a>
+                <a class="nav-item" href="pettycash-master.html"><i class="fas fa-coins"></i> Petty Cash Master</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Transactions</div>
+                <a class="nav-item" href="tax-entry.html"><i class="fas fa-file-invoice-dollar"></i> Tax Entry</a>
+                <a class="nav-item" href="donation-screen.html"><i class="fas fa-donate"></i> Donation Screen</a>
+                <a class="nav-item" href="interest.html"><i class="fas fa-chart-line"></i> Interest</a>
+                <a class="nav-item" href="payment.html"><i class="fas fa-money-bill-wave"></i> Payment</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a class="nav-item" href="tax-report.html"><i class="fas fa-file-alt"></i> Tax Paid & Unpaid Report</a>
+                <a class="nav-item" href="donation-report.html"><i class="fas fa-file-invoice"></i> Donation Report</a>
+                <a class="nav-item" href="payment-report.html"><i class="fas fa-receipt"></i> Payment Report</a>
+                <a class="nav-item" href="overall-report.html"><i class="fas fa-chart-pie"></i> Overall Transaction Report</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer"><div class="om-symbol">🙏</div><p>Temple Management System</p><p class="version">Version 1.0.0</p></div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title">
+                <div class="page-title-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div><h2>Village Master</h2><p>Manage village information / கிராம தகவல்கள்</p></div>
+            </div>
+            <button class="btn btn-primary" onclick="toggleForm()"><i class="fas fa-plus"></i> Add New Village</button>
+        </div>
+
+        <div class="card" id="villageForm" style="display: none;">
+            <div class="card-header"><h3><i class="fas fa-edit"></i> Village Details / கிராம விவரங்கள்</h3></div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Village Name / கிராம பெயர் <span class="required">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter village name">
+                    </div>
+                    <div class="form-group">
+                        <label>Post / அஞ்சல்</label>
+                        <input type="text" class="form-control" placeholder="Enter post">
+                    </div>
+                    <div class="form-group">
+                        <label>Taluk / தாலுகா</label>
+                        <input type="text" class="form-control" placeholder="Enter taluk">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>District / மாவட்டம்</label>
+                        <input type="text" class="form-control" placeholder="Enter district">
+                    </div>
+                    <div class="form-group">
+                        <label>Representative / பிரதிநிதி</label>
+                        <input type="text" class="form-control" placeholder="Enter representative name">
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                    <button class="btn btn-secondary" onclick="toggleForm()"><i class="fas fa-times"></i> Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-list"></i> Village List / கிராம பட்டியல்</h3></div>
+            <div class="card-body">
+                <div class="search-filter">
+                    <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="Search villages..."></div>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>S.No</th><th>Village Name</th><th>Post</th><th>Taluk</th><th>District</th><th>Representative</th><th>Actions</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>Keeranur</td><td>Keeranur</td><td>Pudukottai</td><td>Pudukottai</td><td>Murugan S</td><td class="action-btns"><button class="action-btn edit"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                            <tr><td>2</td><td>Thiruvarankulam</td><td>Thiruvarankulam</td><td>Pudukottai</td><td>Pudukottai</td><td>Senthil K</td><td class="action-btns"><button class="action-btn edit"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                            <tr><td>3</td><td>Alangudi</td><td>Alangudi</td><td>Pudukottai</td><td>Pudukottai</td><td>Kumar R</td><td class="action-btns"><button class="action-btn edit"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                            <tr><td>4</td><td>Aranthangi</td><td>Aranthangi</td><td>Pudukottai</td><td>Pudukottai</td><td>Ravi M</td><td class="action-btns"><button class="action-btn edit"><i class="fas fa-edit"></i></button><button class="action-btn delete"><i class="fas fa-trash"></i></button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="diya-decoration">🪔</div>
+
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        function toggleForm() { const form = document.getElementById('villageForm'); form.style.display = form.style.display === 'none' ? 'block' : 'none'; }
+    </script>
+</body>
+</html>

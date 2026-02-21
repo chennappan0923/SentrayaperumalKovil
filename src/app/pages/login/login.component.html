@@ -1,0 +1,48 @@
+<div class="bg-pattern"></div>
+
+<div class="login-container">
+  <div class="login-card">
+    <div class="temple-icon">
+      <div class="temple-icon-wrapper">
+        <i class="pi pi-building-columns"></i>
+      </div>
+    </div>
+
+    <div class="login-header">
+      <p class="tamil-text">{{ lang.t('login.om') }}</p>
+      <h1>{{ lang.t('login.title') }}</h1>
+      <h2>{{ lang.t('login.subtitle') }}</h2>
+    </div>
+
+    @if (error) {
+      <p-message severity="error" [text]="error"></p-message>
+    }
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>{{ lang.t('login.email') }}</label>
+        <div class="input-wrapper">
+          <i class="pi pi-user"></i>
+          <input pInputText type="email" formControlName="email" [placeholder]="lang.t('login.emailPlaceholder')" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{ lang.t('login.password') }}</label>
+        <div class="input-wrapper">
+          <i class="pi pi-lock"></i>
+          <p-password formControlName="password" [feedback]="false" [toggleMask]="true" [placeholder]="lang.t('login.passwordPlaceholder')"></p-password>
+        </div>
+      </div>
+
+      <div class="form-options">
+        <p-checkbox binary="true" formControlName="rememberMe" inputId="rememberMe"></p-checkbox>
+        <label for="rememberMe">{{ lang.t('login.remember') }}</label>
+      </div>
+
+      <button pButton type="submit" class="login-btn" [loading]="loading" [disabled]="loading" [label]="lang.t('login.button')" icon="pi pi-arrow-right" iconPos="right"></button>
+    </form>
+
+    <div class="footer-text">{{ lang.t('login.footer') }}</div>
+  </div>
+</div>

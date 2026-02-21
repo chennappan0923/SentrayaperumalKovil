@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overall Transaction Report - Perumal Saamy Temple</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .report-formula {
+            background: linear-gradient(135deg, #FFF8DC, #FFEFD5);
+            border: 3px dashed #DAA520;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .report-formula::before {
+            content: '🪔';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            animation: flicker 1.5s ease-in-out infinite;
+        }
+        .report-formula::after {
+            content: '🪔';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            animation: flicker 1.5s ease-in-out infinite 0.5s;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .report-formula h4 {
+            color: #8B0000;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .report-formula .formula {
+            font-size: 18px;
+            font-weight: 700;
+            color: #8B0000;
+            background: white;
+            padding: 18px 30px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(139, 0, 0, 0.15);
+        }
+        .report-formula .formula .plus { color: #228B22; }
+        .report-formula .formula .minus { color: #DC143C; }
+        .report-formula .formula .equals { color: #8B0000; }
+        .net-balance-card {
+            background: linear-gradient(135deg, #8B0000, #5C0000);
+            color: white;
+            text-align: center;
+            padding: 35px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(139, 0, 0, 0.3);
+        }
+        .net-balance-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='rgba(255,215,0,0.05)'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .net-balance-card h3 {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .net-balance-card h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            position: relative;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+        }
+        .net-balance-card p {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 12px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="kolam-bg"></div>
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-section"><div class="logo-icon"><i class="fas fa-gopuram"></i></div><div class="logo-text"><h1>Perumal Saamy Temple</h1><p>ஓம் நமோ நாராயணாய</p></div></div>
+            <h2 class="header-title">Overall Transaction Report</h2>
+        </div>
+        <div class="header-right">
+            <div class="header-date"><i class="fas fa-calendar-alt"></i><span id="currentDate"></span></div>
+            <div class="user-menu"><div class="user-avatar">A</div><div class="user-info"><div class="name">Admin User</div><div class="role">Administrator</div></div></div>
+            <a href="login.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <nav>
+            <div class="nav-section"><div class="nav-section-title">Main</div><a class="nav-item" href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+            <div class="nav-section">
+                <div class="nav-section-title">Masters</div>
+                <a class="nav-item" href="village-master.html"><i class="fas fa-map-marker-alt"></i> Village Master</a>
+                <a class="nav-item" href="devotees.html"><i class="fas fa-users"></i> Devotees</a>
+                <a class="nav-item" href="tax-master.html"><i class="fas fa-percentage"></i> Tax Master</a>
+                <a class="nav-item" href="donation-master.html"><i class="fas fa-hand-holding-heart"></i> Donation Master</a>
+                <a class="nav-item" href="pettycash-master.html"><i class="fas fa-coins"></i> Petty Cash Master</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Transactions</div>
+                <a class="nav-item" href="tax-entry.html"><i class="fas fa-file-invoice-dollar"></i> Tax Entry</a>
+                <a class="nav-item" href="donation-screen.html"><i class="fas fa-donate"></i> Donation Screen</a>
+                <a class="nav-item" href="interest.html"><i class="fas fa-chart-line"></i> Interest</a>
+                <a class="nav-item" href="payment.html"><i class="fas fa-money-bill-wave"></i> Payment</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Reports</div>
+                <a class="nav-item" href="tax-report.html"><i class="fas fa-file-alt"></i> Tax Paid & Unpaid Report</a>
+                <a class="nav-item" href="donation-report.html"><i class="fas fa-file-invoice"></i> Donation Report</a>
+                <a class="nav-item" href="payment-report.html"><i class="fas fa-receipt"></i> Payment Report</a>
+                <a class="nav-item active" href="overall-report.html"><i class="fas fa-chart-pie"></i> Overall Transaction Report</a>
+            </div>
+        </nav>
+        <div class="sidebar-footer"><div class="om-symbol">🙏</div><p>Temple Management System</p><p class="version">Version 1.0.0</p></div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title"><div class="page-title-icon"><i class="fas fa-chart-pie"></i></div><div><h2>Overall Transaction Report</h2><p>Complete financial summary / முழு நிதி சுருக்கம்</p></div></div>
+            <div class="btn-group" style="margin: 0;"><button class="btn btn-success"><i class="fas fa-file-excel"></i> Export Excel</button><button class="btn btn-danger"><i class="fas fa-file-pdf"></i> Export PDF</button><button class="btn btn-primary"><i class="fas fa-print"></i> Print</button></div>
+        </div>
+
+        <!-- Formula Display -->
+        <div class="report-formula">
+            <h4>🙏 Calculation Formula / கணக்கீடு சூத்திரம் 🙏</h4>
+            <div class="formula">
+                <span class="plus">Incoming (வரவு)</span> + <span class="plus">Interest Amount (வட்டி)</span> <span class="minus">- Issue (செலவு)</span> <span class="equals">= Net Balance (இருப்பு)</span>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card success"><h4>₹5,42,800</h4><p>Tax Collection (வரி வரவு)</p></div>
+            <div class="summary-card info"><h4>₹2,15,000</h4><p>Donations (நன்கொடை)</p></div>
+            <div class="summary-card warning"><h4>₹1,25,000</h4><p>Interest Amount (வட்டி)</p></div>
+            <div class="summary-card danger"><h4>₹45,200</h4><p>Issue/Expenses (செலவுகள்)</p></div>
+        </div>
+
+        <!-- Net Balance -->
+        <div class="net-balance-card">
+            <h3>🙏 Net Balance / மொத்த இருப்பு 🙏</h3>
+            <h2>₹8,37,600</h2>
+            <p>(Tax + Donation + Interest - Issue) = (₹5,42,800 + ₹2,15,000 + ₹1,25,000 - ₹45,200)</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="dashboard-stats">
+            <div class="stat-card"><div class="stat-icon success"><i class="fas fa-arrow-up"></i></div><div class="stat-info"><h3>₹8,82,800</h3><p>Total Incoming / மொத்த வரவு</p></div></div>
+            <div class="stat-card"><div class="stat-icon danger"><i class="fas fa-arrow-down"></i></div><div class="stat-info"><h3>₹45,200</h3><p>Total Outgoing / மொத்த செலவு</p></div></div>
+            <div class="stat-card"><div class="stat-icon primary"><i class="fas fa-wallet"></i></div><div class="stat-info"><h3>₹8,37,600</h3><p>Net Balance / நிகர இருப்பு</p></div></div>
+        </div>
+
+        <!-- Filter -->
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-filter"></i> Filter Options / வடிகட்டி விருப்பங்கள்</h3></div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group"><label>From Date / தொடக்க தேதி</label><input type="date" class="form-control"></div>
+                    <div class="form-group"><label>To Date / முடிவு தேதி</label><input type="date" class="form-control"></div>
+                    <div class="form-group"><label>Transaction Type / பரிவர்த்தனை வகை</label><select class="form-control"><option value="">All Transactions</option><option>Tax</option><option>Donation</option><option>Interest</option><option>Issue/Expense</option></select></div>
+                </div>
+                <div class="btn-group"><button class="btn btn-primary"><i class="fas fa-search"></i> Generate Report</button><button class="btn btn-secondary"><i class="fas fa-redo"></i> Reset</button></div>
+            </div>
+        </div>
+
+        <!-- Transaction Summary -->
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-calculator"></i> Transaction Summary / பரிவர்த்தனை சுருக்கம்</h3></div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>Transaction Type</th><th>Description</th><th>Incoming (+)</th><th>Interest Amount (+)</th><th>Issue/Outgoing (-)</th><th>Balance</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="badge badge-success">Tax Collection</span></td><td>Annual temple tax from devotees</td><td class="amount-positive">₹5,42,800</td><td>-</td><td>-</td><td class="amount-positive">₹5,42,800</td></tr>
+                            <tr><td><span class="badge badge-info">Donations</span></td><td>Voluntary donations from devotees</td><td class="amount-positive">₹2,15,000</td><td>-</td><td>-</td><td class="amount-positive">₹7,57,800</td></tr>
+                            <tr><td><span class="badge badge-warning">Interest</span></td><td>Interest earned on loans</td><td>-</td><td class="amount-positive">₹1,25,000</td><td>-</td><td class="amount-positive">₹8,82,800</td></tr>
+                            <tr><td><span class="badge badge-danger">Issue/Expenses</span></td><td>Temple operational expenses</td><td>-</td><td>-</td><td class="amount-negative">₹45,200</td><td class="amount-positive">₹8,37,600</td></tr>
+                        </tbody>
+                        <tfoot style="background: linear-gradient(135deg, #FFF8DC, #FFEFD5);">
+                            <tr style="font-weight: 700; font-size: 14px;"><td colspan="2" style="text-align: right; color: #8B0000;">TOTAL / மொத்தம்</td><td class="amount-positive">₹7,57,800</td><td class="amount-positive">₹1,25,000</td><td class="amount-negative">₹45,200</td><td style="background: linear-gradient(135deg, #8B0000, #5C0000); color: #FFD700; font-size: 16px; border-radius: 8px;">₹8,37,600</td></tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed List -->
+        <div class="card">
+            <div class="card-header"><h3><i class="fas fa-list"></i> Detailed Transaction List / விரிவான பரிவர்த்தனை பட்டியல்</h3></div>
+            <div class="card-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr><th>S.No</th><th>Date</th><th>Type</th><th>Description</th><th>Incoming</th><th>Interest</th><th>Issue</th><th>Running Balance</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>17-12-2024</td><td><span class="badge badge-success">Tax</span></td><td>Raman K - Tax Payment</td><td class="amount-positive">₹500</td><td>-</td><td>-</td><td>₹8,38,100</td></tr>
+                            <tr><td>2</td><td>17-12-2024</td><td><span class="badge badge-info">Donation</span></td><td>Kumar S - Temple Renovation</td><td class="amount-positive">₹5,000</td><td>-</td><td>-</td><td>₹8,43,100</td></tr>
+                            <tr><td>3</td><td>17-12-2024</td><td><span class="badge badge-danger">Issue</span></td><td>Pooja Items Purchase</td><td>-</td><td>-</td><td class="amount-negative">₹2,500</td><td>₹8,40,600</td></tr>
+                            <tr><td>4</td><td>16-12-2024</td><td><span class="badge badge-warning">Interest</span></td><td>Interest from Kumar S loan</td><td>-</td><td class="amount-positive">₹500</td><td>-</td><td>₹8,41,100</td></tr>
+                            <tr><td>5</td><td>15-12-2024</td><td><span class="badge badge-danger">Issue</span></td><td>Electricity Bill - December</td><td>-</td><td>-</td><td class="amount-negative">₹3,200</td><td>₹8,37,900</td></tr>
+                            <tr><td>6</td><td>14-12-2024</td><td><span class="badge badge-info">Donation</span></td><td>Lakshmi R - Annadhanam</td><td class="amount-positive">₹2,000</td><td>-</td><td>-</td><td>₹8,39,900</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="diya-decoration">🪔</div>
+    <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });</script>
+</body>
+</html>

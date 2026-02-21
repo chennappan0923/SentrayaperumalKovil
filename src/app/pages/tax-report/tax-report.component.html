@@ -1,0 +1,61 @@
+<div class="page-header">
+  <div class="page-title">
+    <div class="page-title-icon"><i class="pi pi-file-pdf"></i></div>
+    <div><h2>Tax Paid and Unpaid Report</h2><p>Live from Firestore</p></div>
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="summary-card success"><h4>{{ totalPaid | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Total Paid</p></div>
+  <div class="summary-card warning"><h4>{{ totalPending | currency : 'INR' : 'symbol' : '1.0-0' }}</h4><p>Total Pending</p></div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Year Filter</label>
+        <p-select
+          [appendTo]="'body'"
+          [filter]="true"
+          [options]="yearOptions"
+          optionLabel="label"
+          optionValue="value"
+          [ngModel]="selectedYear"
+          (onChange)="onYearChange($event.value)"
+          class="form-control">
+        </p-select>
+      </div>
+    </div>
+    <div class="form-notice">Showing only entries for devotees with status <strong>Active</strong>.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3><i class="pi pi-list"></i> Tax Entries</h3>
+    <div class="table-actions">
+      <button pButton class="btn btn-secondary" icon="pi pi-file-excel" label="Excel" (click)="exportExcel()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-file-pdf" label="PDF" (click)="exportPdf()"></button>
+      <button pButton class="btn btn-secondary" icon="pi pi-print" label="Print" (click)="printTable()"></button>
+    </div>
+  </div>
+  <div class="card-body table-wrap">
+    @if (entries.length === 0) {
+      <div class="form-notice">No tax entries available yet.</div>
+    } @else {
+      <p-table [value]="entries" styleClass="data-table">
+        <ng-template pTemplate="header"><tr><th>Devotee</th><th>Village</th><th>Year</th><th>Amount</th><th>Status</th></tr></ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.devoteeName }}</td>
+            <td>{{ item.villageName }}</td>
+            <td>{{ item.year }}</td>
+            <td>{{ item.amount | currency : 'INR' : 'symbol' : '1.0-0' }}</td>
+            <td><p-tag [value]="item.paid ? 'Paid' : 'Pending'" [severity]="item.paid ? 'success' : 'warn'"></p-tag></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    }
+  </div>
+</div>
